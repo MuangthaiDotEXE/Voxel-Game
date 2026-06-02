@@ -1,6 +1,9 @@
 set(SOURCES
 	"Source/Core.h"
 	"Source/Core.cpp"
+	"Source/Window/Window.h"
+	"Source/Window/Window.cpp"
+	"Source/Graphics/Texture/stb.cpp"
 )
 
 add_library(Core STATIC)

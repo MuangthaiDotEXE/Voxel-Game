@@ -9,10 +9,14 @@
 #include <cstdint>
 #include <array>
 
+#include "Window/Window.h"
+
 namespace Core
 {
 	struct CoreData
 	{
+		WindowData windowData;
+
 		std::string name = "App";
 		std::array<uint32_t, 3> version = { 0, 0, 0 };
 	};
@@ -21,6 +25,8 @@ namespace Core
 	{
 	private:
 		CoreData coreData;
+
+		std::unique_ptr<Window> window;
 
 	public:
 		Core(const CoreData& coreData = CoreData());

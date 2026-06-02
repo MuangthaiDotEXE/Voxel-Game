@@ -9,12 +9,19 @@ int main(int argc, char** argv)
 	Core::CoreData gameData{};
 	gameData.name = "Voxel Game";
 	gameData.version = { 1, 0, 0 };
+	gameData.windowData.width = 854u;
+	gameData.windowData.height = 480u;
+	gameData.windowData.title = "Voxel Game";
 
 	try
 	{
 		for (size_t i = 0; i < argc; ++i)
 		{
-
+			if (std::string(argv[i]) == "--reset-window" && std::filesystem::exists("Window.state"))
+			{
+				std::filesystem::remove("Window.state");
+				break;
+			}
 		}
 
 		App::App game(gameData);
