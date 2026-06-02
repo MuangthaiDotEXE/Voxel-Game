@@ -10,6 +10,8 @@
 #include <array>
 
 #include "Window/Window.h"
+#include "Graphics/Graphics.h"
+#include "Graphics/OpenGL.h"
 
 namespace Core
 {
@@ -26,7 +28,9 @@ namespace Core
 	private:
 		CoreData coreData;
 
+	public:
 		std::unique_ptr<Window> window;
+		std::unique_ptr<Graphics> graphics;
 
 	public:
 		Core(const CoreData& coreData = CoreData());

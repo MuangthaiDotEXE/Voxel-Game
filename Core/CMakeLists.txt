@@ -3,6 +3,10 @@ set(SOURCES
 	"Source/Core.cpp"
 	"Source/Window/Window.h"
 	"Source/Window/Window.cpp"
+	"Source/Graphics/Graphics.h"
+	"Source/Graphics/Graphics.cpp"
+	"Source/Graphics/OpenGL.h"
+	"Source/Graphics/OpenGL.cpp"
 	"Source/Graphics/Texture/stb.cpp"
 )
 

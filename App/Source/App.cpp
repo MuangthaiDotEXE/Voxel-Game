@@ -12,5 +12,8 @@ void App::App::Render()
 
 void App::App::Update()
 {
-	core.Update();
+	while (!core.window->ShouldClose())
+	{
+		core.Update();
+	}
 }
