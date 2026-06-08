@@ -7,6 +7,16 @@ set(SOURCES
 	"Source/Graphics/Graphics.cpp"
 	"Source/Graphics/OpenGL.h"
 	"Source/Graphics/OpenGL.cpp"
+	"Source/Graphics/Shader/Shader.h"
+	"Source/Graphics/Shader/Shader.cpp"
+	"Source/Graphics/Shader/VertexArray.h"
+	"Source/Graphics/Shader/VertexArray.cpp"
+	"Source/Graphics/Shader/VertexBuffer.h"
+	"Source/Graphics/Shader/VertexBuffer.cpp"
+	"Source/Graphics/Shader/ElementBuffer.h"
+	"Source/Graphics/Shader/ElementBuffer.cpp"
+	"Source/Graphics/Texture/Texture.h"
+	"Source/Graphics/Texture/Texture.cpp"
 	"Source/Graphics/Texture/stb.cpp"
 )
 
