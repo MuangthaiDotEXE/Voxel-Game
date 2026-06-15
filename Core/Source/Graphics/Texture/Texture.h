@@ -3,8 +3,11 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
+#include <iostream>
+#include <print>
 #include <string>
 #include <vector>
+#include <filesystem>
 
 #include <glad/gl.h>
 #include <stb_image.h>

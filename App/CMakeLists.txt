@@ -2,6 +2,14 @@ set(SOURCES
 	"Source/Game.cpp"
 	"Source/App.h"
 	"Source/App.cpp"
+	"Source/Graphics/World/World.h"
+	"Source/Graphics/World/World.cpp"
+	"Source/Graphics/World/Mesh/Block/Block.h"
+	"Source/Graphics/World/Mesh/Block/Block.cpp"
+	"Source/Graphics/World/Mesh/Chunk/Chunk.h"
+	"Source/Graphics/World/Mesh/Chunk/Chunk.cpp"
+	"Source/Graphics/World/Camera/Camera.h"
+	"Source/Graphics/World/Camera/Camera.cpp"
 )
 
 add_executable(App)

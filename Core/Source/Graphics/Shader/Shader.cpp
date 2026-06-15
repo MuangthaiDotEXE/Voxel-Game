@@ -11,7 +11,7 @@ std::string ReadFile(const std::string& path)
 
 	std::string content;
 	file.seekg(0, std::ios::end);
-	content.reserve(file.tellg());
+	content.resize(file.tellg());
 	file.seekg(0, std::ios::beg);
 	file.read(&content[0], content.size());
 	file.close();

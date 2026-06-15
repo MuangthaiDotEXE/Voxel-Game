@@ -20,7 +20,6 @@ void Core::OpenGL::Render()
 void Core::OpenGL::Update()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.05f, 0.05f, 0.05f, 1.00f);
 }
 
 void Core::OpenGL::ViewportResize()

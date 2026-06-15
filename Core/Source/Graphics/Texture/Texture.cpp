@@ -3,19 +3,28 @@
 Core::Texture::Texture(const std::string& texture, const std::string& type, GLuint slot)
 	: type(type), unit(slot)
 {
-	textureID.clear();
-	textureID.emplace_back(LoadTexture(texture, slot));
+	if (!texture.empty() && std::filesystem::exists(texture))
+	{
+		textureID.clear();
+		textureID.emplace_back(LoadTexture(texture, slot));
+	}
 }
 
 Core::Texture::Texture(const std::vector<std::string>& textures, const std::string& type, GLuint slot)
 	: type(type), unit(slot)
 {
-	textureID.clear();
-	textureID.reserve(textures.size());
-
-	for (const auto& texture : textures)
+	if (!textures.empty())
 	{
-		textureID.emplace_back(LoadTexture(texture, slot));
+		textureID.clear();
+		textureID.reserve(textures.size());
+
+		for (const auto& texture : textures)
+		{
+			if (std::filesystem::exists(texture))
+			{
+				textureID.emplace_back(LoadTexture(texture, slot));
+			}
+		}
 	}
 }
 
@@ -71,8 +80,8 @@ GLuint Core::Texture::LoadTexture(const std::string& path, GLuint slot)
 
 	stbi_set_flip_vertically_on_load(true);
 
-	unsigned char* bytes = stbi_load(path.c_str(), &width, &height, &channels, 0);
-	if (!bytes)
+	unsigned char* image = stbi_load(path.c_str(), &width, &height, &channels, 0);
+	if (!image)
 	{
 		throw std::runtime_error((std::format("Failed to load texture: {} (STB image library)\n", path)).c_str());
 	}
@@ -87,14 +96,14 @@ GLuint Core::Texture::LoadTexture(const std::string& path, GLuint slot)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	if (channels == 4) glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes);
-	else if (channels == 3) glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, bytes);
-	else if (channels == 1) glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, bytes);
+	if (channels == 4) glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	else if (channels == 3) glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	else if (channels == 1) glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, image);
 	else throw std::runtime_error("Texture type recognition failed (OpenGL graphics API)\n");
 
 	glGenerateMipmap(GL_TEXTURE_2D);
 
-	stbi_image_free(bytes);
+	stbi_image_free(image);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	return id;

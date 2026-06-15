@@ -35,10 +35,13 @@ target_compile_definitions(Core PUBLIC
 	GLM_ENABLE_EXPERIMENTAL
 )
 
-add_library(glad 
+add_library(glad_gl
 			"${CMAKE_SOURCE_DIR}/Library/glad/src/gl.c"
+)
+
+add_library(glad_gles
 			"${CMAKE_SOURCE_DIR}/Library/glad/src/gles2.c"
 )
 
-target_link_libraries(Core glfw OpenGL::GL glad glm)
+target_link_libraries(Core glfw OpenGL::GL glad_gl glad_gles glm)
 target_include_directories(Core PUBLIC "Source")

@@ -5,12 +5,16 @@
 
 #include "Core.h"
 
+#include "Graphics/World/World.h"
+
 namespace App
 {
 	class App
 	{
 	private:
 		Core::Core core;
+
+		World world;
 
 	public:
 		App(const Core::CoreData& coreData);

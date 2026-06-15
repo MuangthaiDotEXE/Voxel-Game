@@ -146,6 +146,8 @@ Core::Window::Window(const WindowData& windowData)
 		Fullscreen();
 	}
 
+	glfwSetWindowUserPointer(window, this);
+
 	if (glfwRawMouseMotionSupported())
 	{
 		glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
@@ -394,11 +396,6 @@ void Core::Window::Fullscreen()
 
 void Core::Window::SaveState()
 {
-	if (fullscreenMode)
-	{
-		return;
-	}
-
 	WindowState windowState{};
 	windowState.fullscreen = fullscreenMode;
 	windowState.maximized = static_cast<bool>(glfwGetWindowAttrib(window, GLFW_MAXIMIZED));
