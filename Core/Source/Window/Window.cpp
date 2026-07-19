@@ -175,11 +175,6 @@ Core::Window::~Window()
 
 void Core::Window::Input()
 {
-	// Mouse
-	{
-		// Empty for now
-	}
-
 	// Keyboard
 	{
 		double currentTime = glfwGetTime();
@@ -310,9 +305,24 @@ void Core::Window::SetIcon(const std::string& path)
 	}
 }
 
+void Core::Window::SetSize(glm::vec2 size)
+{
+	glfwSetWindowSize(window, size.x, size.y);
+}
+
+void Core::Window::SetSize(float width, float height)
+{
+	glfwSetWindowSize(window, width, height);
+}
+
 void Core::Window::SetPosition(glm::vec2 position)
 {
 	glfwSetWindowPos(window, position.x, position.y);
+}
+
+void Core::Window::SetPosition(float x, float y)
+{
+	glfwSetWindowPos(window, x, y);
 }
 
 void Core::Window::SetCenter()

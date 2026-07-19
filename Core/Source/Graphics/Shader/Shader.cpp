@@ -6,7 +6,7 @@ std::string ReadFile(const std::string& path)
 
 	if (!file)
 	{
-		throw std::runtime_error("Failed to read the file: {} (Input/Output)\n");
+		throw std::runtime_error(std::format("Failed to read the file: {}. No such file or directory (Input/Output)\n", path));
 	}
 
 	std::string content;
@@ -21,8 +21,19 @@ std::string ReadFile(const std::string& path)
 
 Core::Shader::Shader(const std::string& vertexFile, const std::string& fragmentFile)
 {
-	std::string vertexCode = ReadFile(vertexFile);
-	std::string fragmentCode = ReadFile(fragmentFile);
+	std::string vertexCode;
+	std::string fragmentCode;
+
+	if (std::filesystem::exists(vertexFile) && std::filesystem::exists(fragmentFile))
+	{
+		vertexCode = ReadFile(vertexFile);
+		fragmentCode = ReadFile(fragmentFile);
+	}
+	else
+	{
+		vertexCode = vertexFile;
+		fragmentCode = fragmentFile;
+	}
 
 	const char* vertexSource = vertexCode.c_str();
 	const char* fragmentSource = fragmentCode.c_str();

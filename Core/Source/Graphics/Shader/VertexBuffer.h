@@ -13,6 +13,7 @@ namespace Core
 		GLuint vboID;
 
 	public:
+		VertexBuffer(GLfloat* vertices);
 		VertexBuffer(GLfloat* vertices, GLsizeiptr size);
 		virtual ~VertexBuffer();
 

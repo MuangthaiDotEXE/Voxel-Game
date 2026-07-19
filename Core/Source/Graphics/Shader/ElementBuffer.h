@@ -13,6 +13,7 @@ namespace Core
 		GLuint eboID;
 
 	public:
+		ElementBuffer(GLuint* indices);
 		ElementBuffer(GLuint* indices, GLsizeiptr size);
 		virtual ~ElementBuffer();
 

@@ -91,7 +91,10 @@ namespace Core
 
 		void SetTitle(const std::string& title);
 		void SetIcon(const std::string& path);
+		void SetSize(glm::vec2 size);
+		void SetSize(float width, float height);
 		void SetPosition(glm::vec2 position);
+		void SetPosition(float x, float y);
 
 	private:
 		void SetCenter();

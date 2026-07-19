@@ -1,5 +1,12 @@
 #include "ElementBuffer.h"
 
+Core::ElementBuffer::ElementBuffer(GLuint* indices)
+{
+	glGenBuffers(1, &eboID);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+}
+
 Core::ElementBuffer::ElementBuffer(GLuint* indices, GLsizeiptr size)
 {
 	glGenBuffers(1, &eboID);
